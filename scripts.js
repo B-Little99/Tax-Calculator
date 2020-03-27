@@ -1,8 +1,7 @@
-let income = document.getElementById("income").value;
+let income;
 let personalAllowance = 12500;
 let lowerTaxBracket = 50000;
 let higherRateBracket = 150000;
-
 
 function lowerTax() {
     // income = a;
@@ -19,43 +18,46 @@ function higherRateTax() {
 
 function additionalRateTax() {
     let additionalRateTaxIncome = (income - higherRateBracket) * 0.55;
-    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax() + lowerTax();
+    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax(100000) + lowerTax(50000);
     return finaladditionalRateTax;
 }
 
 function yearlyCalc() {
     let answer;
-    if (income < personalAllowance) {
-        document.getElementById("output").innerHTML = "You do not pay any tax!"
-       } else if ( income > lowerTaxBracket && income < higherRateBracket) {
+    if (income <= personalAllowance) {
+        answer = income;
+    } else if ( income > lowerTaxBracket && income <= higherRateBracket) {
             answer = higherRateTax();
-            return answer;
-       } else if (income > higherRateBracket) {
+    } else if (income > higherRateBracket) {
             answer = additionalRateTax();
-            return answer;
-       } else if (income > personalAllowance && income < lowerTaxBracket){
+    } else if (income > personalAllowance && income <= lowerTaxBracket) {
             answer = lowerTax();
-            return answer;
-        }
+    } else {
+        document.getElementById("output").innerHTML = "There has been an error.";
+        return; // stops rest of function
+    }
     // answer = parseFloat(answer).toFixed(2);
-    document.getElementById("output").innerHTML = "You takehome £" + answer + " every year!";
+    let outputstring =  "You take home £" + answer.toString() + " every year"; //practice this more
+    document.getElementById("output").innerHTML = outputstring;
+    return answer;
 }
 
-
 function monthlyCalc() {
+    let answer;
     answer = (yearlyCalc()) / 12;
-    document.getElementById("output").innerHTML = "You takehome £" + answer.toFixed(2) + " every year!";
+    document.getElementById("output").innerHTML = "You takehome £" + answer.toFixed(2) + " every month!";
 }
 
 function finalCalc() {
+    income = document.getElementById("income").value;
     if (document.getElementById("yearly").checked) {
         yearlyCalc();
     } else if (document.getElementById("monthly").checked) {
         monthlyCalc()
     }
-        else {
-            document.getElementById("output").innerHTML = "Please add your salary before hitting submit";
-        }
+    else {
+        document.getElementById("output").innerHTML = "Please add your salary before hitting submit";
+    }
 }
 
 function reset() {
