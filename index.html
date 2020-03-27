@@ -7,15 +7,26 @@
     <body>
         <h1>Tax Calculator</h1>
 
-        <p>Please input your income: </p>
-        <input type="number" required>
-        
-        <p>See below for more options</p>
-        <label for="National Insurance"><input id = "nationalInsurance" type="radio">Include National Insurance (NI) contributions</label>
+        <!-- <form action="return false"> -->
+            <p>Please input your income: </p>
+            <input id = "income" type="number" required>
+            
+            <p>See below for more options</p>
+            <!-- <label for="National Insurance"><input id = "nationalInsurance" type="checkbox">Include National Insurance (NI) contributions</label> -->
 
-        <p>Would you like to calculate your tax on a monthly or yearly basis?</p>
-        <label for="Monthly"><input id = "monthly" type="radio">Monthly</label>
-        <label for="Yearly"><input id = "yearly" type="radio">Yearly</label>
+            <p>Would you like to calculate your tax on a monthly or yearly basis?</p>
+            <label for="Monthly"><input name = "radiobox" id = "monthly" type="radio">Monthly</label>
+            <label for="Yearly"><input name = "radiobox" id = "yearly" type="radio">Yearly</label>
+
+            <div id = "buttonWrapper">
+                <button class = "button" id = "submit" onclick = "finalCalc()">Submit</button>
+                <button class = "button" type = "reset" onclick="reset()"> Reset </button>
+            </div>
+        <!-- </form> -->
+
+        <p id = "output"></p>
+        <p id = "output"></p>
+        <p id = "output"></p>
 
         <script src="scripts.js" async defer></script>
     </body>
