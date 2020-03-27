@@ -1,33 +1,60 @@
 body {
-font-size: 25px;
-font-family: unset;
-margin: auto;
-text-align: center;
-width: 70%;
-display: block;
+    font-size: 25px;
+    font-family: unset;
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    display: block;
+    font-family: sans-serif;
 }
 
 h1 {
-font-size: 45px;
+    font-size: 45px;
+    color: #0823D2;
+
 }
 
 p {
-    font
+    font-size: 25px;
+    line-height: 25px;
 }
 
 
 #income {
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid #0823D2;
+    text-align: center;
+    font-size: 20px;
+    margin: 10px;
+    background-color: #D3D9FC;
+    outline: none;
+}
 
+button:hover {
+    transform: scale(1.1);
+    background-color: rgb(66, 89, 221);
+    color: white;
 }
 
 button {
-
+    border-color: #0823D2;
+    background-color: #D3D9FC;
+    color: black;    
+    border-radius: 25px;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px 12px 10px 12px;
+    width: 150px;
+    outline: none;
 }
 
 #buttonWrapper {
-
+    margin: 20px auto;
 }
 
 .radiobutton {
-
+    user-select: none;
+    
 }
