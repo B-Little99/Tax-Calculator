@@ -4,21 +4,39 @@ let lowerTaxBracket = 50000;
 let higherRateBracket = 150000;
 
 function lowerTax() {
-    // income = a;
-    let lowerTaxableIncome = (income - personalAllowance) * 0.80; //This gets the taxable income value and multiplies it by 0.80 to get the taxed income for the 20% bracket.
-    let finalLower = lowerTaxableIncome + personalAllowance; //This adds the taxed income to the personal allowance to get the final taxed lower income.
-    return finalLower;
+    let lowerTaxableIncome;
+    let finalLower;
+    if (income > 150000) {
+        lowerTaxableIncome = (50000 - personalAllowance) * 0.80;
+        finalLower = lowerTaxableIncome + personalAllowance;
+        return finalLower;
+    } else {
+        lowerTaxableIncome = (income - personalAllowance) * 0.80; //This gets the taxable income value and multiplies it by 0.80 to get the taxed income for the 20% bracket.
+        finalLower = lowerTaxableIncome + personalAllowance; //This adds the taxed income to the personal allowance to get the final taxed lower income.
+        return finalLower;
+    }
 }
 
 function higherRateTax() {
-    let higherTaxIncome = (income - lowerTaxBracket) * 0.60; //This gets the taxable income value for the higher rate taxes and multiplies it by 0.60 to get the taxed income for the higher rate bracket.
-    let finalHigherTax = higherTaxIncome + (lowerTax(50000));
-    return finalHigherTax;
+    let higherTaxIncome;
+    let finalHigherTax;
+    if (income > 150000) {
+        higherTaxIncome = 100000 * 0.60; // This gets the taxable income for the additional rate tax payers as they will always need to calculate the 100000 (the money for this bracket) as they have over 150k in yearly income.
+        finalHigherTax = higherTaxIncome + (lowerTax(50000));
+        return finalHigherTax;
+    }
+    else {
+        higherTaxIncome = (income - lowerTaxBracket) * 0.60; //This gets the taxable income value for the higher rate taxes and multiplies it by 0.60 to get the taxed income for the higher rate bracket.
+        finalHigherTax = higherTaxIncome + (lowerTax(50000));
+        return finalHigherTax;
+    }
 }
+
+
 
 function additionalRateTax() {
     let additionalRateTaxIncome = (income - higherRateBracket) * 0.55;
-    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax(100000) + lowerTax(50000);
+    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax(100000); //+ lowerTax(50000);
     return finaladditionalRateTax;
 }
 
@@ -26,12 +44,12 @@ function yearlyCalc() {
     let answer;
     if (income <= personalAllowance) {
         answer = income;
+    } else if (income > personalAllowance && income <= lowerTaxBracket) {
+        answer = lowerTax();
     } else if ( income > lowerTaxBracket && income <= higherRateBracket) {
             answer = higherRateTax();
     } else if (income > higherRateBracket) {
             answer = additionalRateTax();
-    } else if (income > personalAllowance && income <= lowerTaxBracket) {
-            answer = lowerTax();
     } else {
         document.getElementById("output").innerHTML = "There has been an error.";
         return; // stops rest of function
