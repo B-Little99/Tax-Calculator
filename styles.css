@@ -54,7 +54,29 @@ button {
     margin: 20px auto;
 }
 
-.radiobutton {
+.container {
     user-select: none;
-    
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding: 30px;
+
+}
+
+.container input{
+    display: none;
+}
+
+.radiobox:checked ~ .circle {
+    background-color: #0823D2;
+}
+
+.circle {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    background-color: lightgrey;
+    position: absolute;
+    border-radius: 50%;
+    left: 0;
 }

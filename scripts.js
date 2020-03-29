@@ -34,11 +34,11 @@ function higherRateTax() {
 
 function additionalRateTax() {
     let additionalRateTaxIncome = (income - higherRateBracket) * 0.55;
-    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax();
+    let finaladditionalRateTax = additionalRateTaxIncome + higherRateTax(); // I do not include the lower rate tax as this is used within the higher rate tax function 
     return finaladditionalRateTax;
 }
 
-function yearlyCalc() {
+function yearlyCalc() { //The if and else if statements determine what bracket the user is in and then uses that information to calculate the correct answer.
     let answer;
     if (income <= personalAllowance) {
         answer = income;
@@ -52,7 +52,7 @@ function yearlyCalc() {
         document.getElementById("output").innerHTML = "There has been an error.";
         return;
     }
-    let outputstring =  "You take home £" + answer.toString() + " every year";
+    let outputstring =  "You take home £" + answer.toString() + " every year!";
     document.getElementById("output").innerHTML = outputstring;
     return answer;
 }
@@ -65,7 +65,7 @@ function monthlyCalc() {
 
 function finalCalc() {
     income = document.getElementById("income").value;
-    if (document.getElementById("yearly").checked) {
+    if (document.getElementById("yearly").checked) { //I use .checked in this function to help determine what calculation should be completed - either yearly or monthly.
         yearlyCalc();
     } else if (document.getElementById("monthly").checked) {
         monthlyCalc()

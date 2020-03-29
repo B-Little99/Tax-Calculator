@@ -1,0 +1,1 @@
+This programme is a tax calculator that gets the user to input their yearly income. On hitting the submit button the programme determines their tax bracket and works out their final pay in their desired option (monthly or yearly).
